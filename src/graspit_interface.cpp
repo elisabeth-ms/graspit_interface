@@ -470,13 +470,7 @@ bool GraspitInterface::setRobotDesiredDOFCB(graspit_interface::SetRobotDesiredDO
 bool GraspitInterface::importRobotCB(graspit_interface::ImportRobot::Request &request,
                        graspit_interface::ImportRobot::Response &response)
 {
-    QString filename = QString(getenv("GRASPIT"))+
-            QString("/models/robots/") +
-            QString(request.filename.data()) +
-            QString("/") +
-            QString(request.filename.data()) +
-            QString(".xml");
-
+    QString filename = QString(request.filename.data());
     ROS_INFO("Loading %s",filename.toStdString().c_str());
 
     Robot * r = graspitCore->getWorld()->importRobot(filename);
